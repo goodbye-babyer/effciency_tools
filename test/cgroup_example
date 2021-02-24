@@ -1,0 +1,12 @@
+#cgroup_example. when do performance testing, we could use cgrpup to limit the process's resouce,
+#sush as cpu or mem and so on.  we could let multi-process in the same cgroup to do testing.
+#ex: client process-> server process.
+
+NAME=/your/cgroup/name
+cgcreate -g cpu,memory:$NAME
+# 8GB
+cgset -r memory.limit_in_bytes=8147483647 $NAME
+# 4C
+cgset -r cpu.cfs_quota_us=400000 $NAME
+
+cgexec -g cpu,memory:$NAME ./your_binary_program
