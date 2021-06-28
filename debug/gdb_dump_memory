@@ -1,0 +1,8 @@
+1.cat /proc/$pid/maps
+
+2.gdb attach $ProcessID
+
+3.dump memory $LogFile  $FromAddress $ToAddress
+
+4.cat $LogFile | sort | uniq -c |sort -nrk1
+
